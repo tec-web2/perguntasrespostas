@@ -3,22 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Pergunta e Resposta</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <%- include('partials/navbar.ejs') %>
     <div class="container">
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-body">
           <h3><%= pergunta.titulo %></h3>
-        </div>
-        <div class="card-footer">
           <p><%= pergunta.descricao %></p>
         </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            Criada em: <%= new Date(pergunta.data_criacao).toLocaleDateString()
+            %>
+          </small>
+        </div>
       </div>
+
+      <h4>Respostas:</h4>
+      <ul class="list-group mb-4">
+        <% if (pergunta.resposta && pergunta.resposta.length > 0) { %> <%
+        pergunta.resposta.forEach(function(resposta) { %>
+        <li class="list-group-item">
+          <p><%= resposta.texto %></p>
+          <div>
+            <button
+              class="btn btn-primary btn-sm"
+              onclick="likeResposta('<%= resposta.id %>')"
+            >
+              Curtir (<span id="likes-<%= resposta.id %>"
+                ><%= resposta.likes %></span
+              >)
+            </button>
+          </div>
+          <small class="text-muted">
+            Respondida em: <%= new
+            Date(resposta.data_criacao).toLocaleDateString() %>
+          </small>
+        </li>
+        <% }); %> <% } else { %>
+        <li class="list-group-item">Nenhuma resposta ainda.</li>
+        <% } %>
+      </ul>
+
+      <h4>Adicionar Resposta:</h4>
+      <form action="/pergunta/<%= pergunta.id %>/resposta" method="POST">
+        <div class="form-group mb-3">
+          <textarea
+            name="texto"
+            class="form-control"
+            rows="3"
+            placeholder="Digite sua resposta aqui..."
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Enviar Resposta</button>
+      </form>
     </div>
+
+    <script>
+      function likeResposta(respostaId) {
+        fetch(`/resposta/${respostaId}/like`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              const likesElement = document.getElementById(
+                `likes-${respostaId}`
+              );
+              likesElement.textContent = data.likes;
+            } else {
+              alert("Erro ao curtir a resposta.");
+            }
+          })
+          .catch((error) => {
+            console.error("Erro:", error);
+            alert("Erro ao curtir a resposta.");
+          });
+      }
+    </script>
+
+    <%- include('partials/footer.ejs') %>
   </body>
-  <%- include('partials/footer.ejs') %>
 </html>

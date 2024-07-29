@@ -1,15 +1,11 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("./database");
 
-class Pergunta extends Model {}
+class Resposta extends Model {}
 
-Pergunta.init(
+Resposta.init(
   {
-    titulo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    descricao: {
+    texto: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -17,13 +13,21 @@ Pergunta.init(
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
+    likes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    perguntaId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
-    modelName: "Pergunta",
-    tableName: "pergunta",
+    modelName: "Resposta",
+    tableName: "resposta",
     timestamps: false,
   }
 );
 
-module.exports = Pergunta;
+module.exports = Resposta;

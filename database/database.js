@@ -1,8 +1,9 @@
 const Sequelize = require("sequelize");
 
 // Cria uma nova instância do Sequelize
-const conection = new Sequelize("guiaperguntas", "root", "12345678", {
+const conection = new Sequelize("guiaperguntas", "root", "12345", {
   host: "localhost",
-  dialect: "mysql", // Mude para o dialeto correto se estiver usando outro DB
+  dialect: "mysql",
+  logging: false,
 });
 module.exports = conection;
