@@ -1,6 +1,6 @@
-const { Pergunta, Resposta } = require("../../database/associations"); 
+const { Pergunta, Resposta } = require("../../../database/associations"); 
 
-async function listarPergunta(){
+async function listarPerguntaService(){
     return Pergunta.findAll({ raw: true, order: [["id", "DESC"]] })
         .then((perguntas) => {
             return perguntas;
@@ -11,4 +11,4 @@ async function listarPergunta(){
         });
 }
 
-module.exports = listarPergunta;
+module.exports = listarPerguntaService;
