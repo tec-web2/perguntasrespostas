@@ -1,29 +1,19 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const conection = require("./database/database");
-const { Pergunta, Resposta } = require("./database/associations"); // Importar associações
+const conection = require("../database/database");
+const { Pergunta, Resposta } = require("../database/associations"); 
+const listarPerguntaRouter = require("./routes/listagemPerguntasRoutes")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-conection
-  .authenticate()
-  .then(() => {
-    console.log("Conexão estabelecida com sucesso.");
-  })
-  .catch((err) => {
-    console.error("Não foi possível conectar ao banco de dados:", err);
-  });
-
-Pergunta.findAll()
-  .then((perguntas) => {
-    console.log(perguntas);
-  })
-  .catch((err) => {
-    console.error("Erro ao buscar perguntas:", err);
-  });
-
+conection.authenticate().then(() => {
+  console.log("Conexão estabelecida com sucesso.");
+})
+.catch((err) => {
+  console.error("Não foi possível conectar ao banco de dados:", err);
+});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
@@ -31,21 +21,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  Pergunta.findAll({ raw: true, order: [["id", "DESC"]] }).then((pergunta) => {
-    res.render("index", {
-      pergunta: pergunta,
-    });
-  });
+  listarPerguntaRouter(req, res)
 });
 
 app.get("/perguntar", (req, res) => {
   res.render("perguntar");
-});
-app.get("/salvarpergunta", (req, res) => {
-  res.send("Fomulário recebido com sucesso");
-});
-app.get("/coisa", (req, res) => {
-  res.render("coisa");
 });
 
 app.post("/salvarpergunta", (req, res) => {
