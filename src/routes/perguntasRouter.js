@@ -4,6 +4,7 @@ const listarPerguntaController = require("../controllers/perguntas/listagemPergu
 const perguntarController = require("../controllers/perguntas/perguntarController");
 const salvarPerguntaController = require("../controllers/perguntas/salvarPerguntaController");
 const lerPorPerguntaIDController = require("../controllers/perguntas/lerPorPerguntaIDController");
+const deletarPerguntaController = require("../controllers/perguntas/deletarPerguntaController");
 
 
 perguntaRouter.get("/", (req, res) => {
@@ -20,6 +21,10 @@ perguntaRouter.post("/salvarpergunta", (req, res) => {
 
 perguntaRouter.get("/pergunta/:id", (req, res) => {
   lerPorPerguntaIDController(req, res);
+});
+
+perguntaRouter.delete("/pergunta/delete/:id", (req, res) => {
+  deletarPerguntaController(req, res);
 });
 
 
