@@ -3,9 +3,7 @@ const criarRespostaService = require("../../services/respostas/criarRespostaServ
 
 async function criarRepostaController(req, res) {
     const perguntaID = req.params.id;
-    console.log(perguntaID)
     const { texto } = req.body;
-    console.log(texto)
 
     const pergunta = lerPerguntaPorIDService(perguntaID);
     if (!pergunta) {
