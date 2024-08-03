@@ -11,11 +11,15 @@ Pergunta.init(
     },
     descricao: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     data_criacao: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
+    },
+    perguntador: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {

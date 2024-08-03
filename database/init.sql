@@ -22,3 +22,8 @@ CREATE TABLE resposta (
     perguntaId INT,
     FOREIGN KEY (perguntaId) REFERENCES pergunta(id) ON DELETE CASCADE
 );
+
+-- Caso as tabelas do  banco ja estejam criadas, acrescente a linha de código abaixo
+--p/ acrescentar a coluna perguntador
+
+ALTER TABLE pergunta ADD COLUMN perguntador VARCHAR(255);

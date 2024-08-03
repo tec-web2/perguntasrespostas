@@ -3,7 +3,8 @@ const salvarPerguntaService = require("../../services/perguntas/salvarPerguntaSe
 async function salvarPerguntaController(req, res) {
   var titulo = req.body.titulo;
   var descricao = req.body.descricao;
-  await salvarPerguntaService(titulo, descricao);
+  var perguntador = req.body.perguntador;
+  await salvarPerguntaService(titulo, descricao, perguntador);
   res.redirect("/");
 }
 module.exports = salvarPerguntaController;
