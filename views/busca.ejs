@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PERGUNTAS-RESPOSTAS</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/images/search.png" type="image/png">
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="container">
+      <hr />
+      <h1>Perguntas</h1>
+      <hr />
+      <h2>Busca</h2>
+      <hr/>
+      <div class="row">
+        <!-- Busca por Data -->
+        <div class="col-md-4">
+          <form action="/buscarpergunta/data" method="POST">
+            <div class="form-group">
+              <label for="data_criacao">Buscar por Data:</label>
+              <input type="date" class="form-control" id="data_criacao" name="data">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+          </form>
+        </div>
+
+        <!-- Busca por Descrição -->
+        <div class="col-md-4">
+          <form action="/buscarpergunta/titulo" method="POST">
+            <div class="form-group">
+              <label for="descricao">Buscar por titulo:</label>
+              <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+          </form>
+        </div>
+
+        <!-- Busca por Perguntador -->
+        <div class="col-md-4">
+          <form action="/buscarpergunta/perguntador" method="Post">
+            <div class="form-group">
+              <label for="perguntador">Buscar por Perguntador:</label>
+              <input type="text" class="form-control" id="perguntador" name="perguntador" placeholder="Nome do perguntador">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+          </form>
+        </div>
+      </div>
+    <%- include('partials/footer.ejs') %>
+  </body>
+</html>
