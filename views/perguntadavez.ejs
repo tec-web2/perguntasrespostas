@@ -28,6 +28,9 @@
           >
             Apagar Pergunta
           </button>
+          <button class="btn btn-secondary btn-sm" onclick="editarPergunta('<%= pergunta.id %>')">
+            Editar Pergunta
+          </button>
         </div>
       </div>
 
@@ -51,6 +54,9 @@
               onclick="apagarResposta('<%= resposta.id %>')"
             >
               Deletar Resposta
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="editarResposta('<%= resposta.id %>', '<%= resposta.texto %>')">
+              Editar Resposta
             </button>
           </div>
           <small class="text-muted">
@@ -153,6 +159,62 @@
             .catch((error) => {
               console.error("Erro:", error);
               alert("Erro ao apagar a resposta.");
+            });
+        }
+      }
+      function editarResposta(respostaId, textoAtual) {
+        const novoTexto = prompt("Edite a resposta:", textoAtual);
+      
+        if (novoTexto) {
+          fetch(`/resposta/${respostaId}/update`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              texto: novoTexto,
+            }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("Resposta editada com sucesso.");
+                location.reload(); // Recarrega a página após a edição
+              } else {
+                alert("Erro ao editar a resposta.");
+              }
+            })
+            .catch((error) => {
+              console.error("Erro:", error);
+              alert("Erro ao editar a resposta.");
+            });
+        }
+      }
+      function editarPergunta(perguntaId) {
+        const perguntaTitulo = prompt("Edite o título da pergunta:", "<%= pergunta.titulo %>");
+        const perguntaDescricao = prompt("Edite a descrição da pergunta:", "<%= pergunta.descricao %>");
+      
+        if (perguntaTitulo && perguntaDescricao) {
+          fetch(`/pergunta/${perguntaId}/update`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              titulo: perguntaTitulo,
+              descricao: perguntaDescricao,
+            }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("Pergunta editada com sucesso.");
+                location.reload(); // Recarrega a página após a edição
+              } else {
+                alert("Erro ao editar a pergunta.");
+              }
+            })
+            .catch((error) => {
+              console.error("Erro:", error);
+              alert("Erro ao editar a pergunta.");
             });
         }
       }

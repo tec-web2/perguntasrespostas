@@ -5,6 +5,7 @@ const perguntarController = require("../controllers/perguntas/perguntarControlle
 const salvarPerguntaController = require("../controllers/perguntas/salvarPerguntaController");
 const lerPorPerguntaIDController = require("../controllers/perguntas/lerPorPerguntaIDController");
 const deletarPerguntaController = require("../controllers/perguntas/deletarPerguntaController");
+const editarPerguntaController = require("../controllers/perguntas/editarPerguntaController");
 
 
 perguntaRouter.get("/", (req, res) => {
@@ -27,5 +28,8 @@ perguntaRouter.delete("/pergunta/delete/:id", (req, res) => {
   deletarPerguntaController(req, res);
 });
 
+perguntaRouter.put("/pergunta/:id/update", (req, res) => {
+  editarPerguntaController(req, res);
+});
 
 module.exports = perguntaRouter;
