@@ -28,3 +28,6 @@ CREATE TABLE resposta (
 
 ALTER TABLE pergunta ADD COLUMN perguntador VARCHAR(255);
 ALTER TABLE resposta ADD COLUMN nome_autor VARCHAR(255);
+
+-- importante pra funcionar a busca, alguns caracteres só funcionam com esse collation
+ALTER TABLE Pergunta MODIFY titulo VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
