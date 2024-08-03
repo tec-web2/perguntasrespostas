@@ -9,6 +9,10 @@ Resposta.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    nome_autor: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     data_criacao: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,

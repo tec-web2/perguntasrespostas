@@ -36,7 +36,7 @@
         <% if (pergunta.resposta && pergunta.resposta.length > 0) { %> <%
         pergunta.resposta.forEach(function(resposta) { %>
         <li class="list-group-item">
-          <p><%= resposta.texto %></p>
+          <p><strong><%= resposta.nome_autor %>:</strong> <%= resposta.texto %></p>
           <div>
             <button
               class="btn btn-primary btn-sm"
@@ -66,6 +66,15 @@
       <h4>Adicionar Resposta:</h4>
       <form action="/pergunta/<%= pergunta.id %>/resposta" method="POST">
         <div class="form-group mb-3">
+          <label>Autor</label>
+          <input
+            type="text"
+            placeholder="Nome"
+            class="form-control"
+            name="nome"
+            required
+          />
+          <label>Resposta</label>
           <textarea
             name="texto"
             class="form-control"

@@ -27,3 +27,4 @@ CREATE TABLE resposta (
 --p/ acrescentar a coluna perguntador
 
 ALTER TABLE pergunta ADD COLUMN perguntador VARCHAR(255);
+ALTER TABLE resposta ADD COLUMN nome_autor VARCHAR(255);
