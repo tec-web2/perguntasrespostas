@@ -7,39 +7,42 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" href="/images/search.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   </head>
   <body>
     <%- include('partials/navbar.ejs') %>
     <div class="container">
-      <div class="card" id="formulario-pergunta">
-        <div class="card-header">
-          <h3>Realizar Perguntas</h3>
+      <div class="question" id="formulario-pergunta">
+        <div class="header">
+          <h3>Adicione Uma Pergunta</h3>
         </div>
-        <div class="card-body">
+        <div class="body">
           <form method="post" action="/salvarpergunta">
-            <label>Título</label>
+            <label class="mb-2">Título</label>
             <input
               type="text"
               placeholder="Título"
-              class="form-control"
+              class="form-control py-2"
               name="titulo"
             />
             <br />
             <label>Perguntador</label>
             <input
               type="text"
-              placeholder="Título"
-              class="form-control"
+              placeholder="Perguntador"
+              class="form-control py-2"
               name="perguntador"
             />
             <br />
             <label>Descrição</label>
             <textarea
               placeholder="Descreva sua pergunta aqui"
-              class="form-control"
+              class="form-control py-2"
               name="descricao"
             ></textarea>
-            <button class="btn btn-primary">Responder</button>
+            <button class="btn mt-3 fw-semibold">Responder</button>
           </form>
         </div>
       </div>
