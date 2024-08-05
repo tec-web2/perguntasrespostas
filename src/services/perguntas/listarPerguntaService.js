@@ -1,7 +1,14 @@
 const { Pergunta, Resposta } = require("../../../database/associations"); 
 
 async function listarPerguntaService(){
-    return Pergunta.findAll({ raw: true, order: [["id", "DESC"]] })
+    return Pergunta.findAll({order: [["id", "DESC"]],
+        include: [
+            {
+                model: Resposta,
+                as: "resposta",
+            },
+        ]
+    })
         .then((perguntas) => {
             return perguntas;
         })
