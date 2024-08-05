@@ -4,8 +4,9 @@
   --text-white: #2e2e39;
   --gray: #eeeeee;
   --red: #aa2200;
+  --red-opaque: rgba(170, 34, 0,0.2);
   --white: #f1f8fb;
-  --white-opaco: rgba(241,248,251,0.5);
+  --white-opaque: rgba(241,248,251,0.5);
 }
 
 body {
@@ -13,17 +14,16 @@ body {
   background-color: var(--black);
   color: var(--white);
 }
-
 #formulario-pergunta {
   margin-top: 5vh;
-  color: var(--white-opaco);
+  color: var(--white-opaque);
 }
 #formulario-pergunta button{
   background-color: var(--white);
   color: var(--black) ;
 }
 #formulario-pergunta button:hover{
-  background-color: var(--white-opaco);
+  background-color: var(--white-opaque);
 }
 #formulario-pergunta input, #formulario-pergunta textarea{
   background-color: var(--light-black);
@@ -47,6 +47,13 @@ body {
   background-color: var(--text-white);
 }
 .res-button svg {
+  color: var(--red);
+}
+.num-answers{
+  background-color: var(--red-opaque);
+  color: var(--white);
+}
+.num-answers svg{
   color: var(--red);
 }
 hr {
