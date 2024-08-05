@@ -72,6 +72,51 @@ Inicie o servidor
   nodemon src/server.js
 ```
 
+## Configurando o banco de dados
+
+Dentro da pasta database, a um arquivo chamado Init.sql, nele contém as query sql para inicialização do banco de dados
+
+Cria a tabela guiaperguntas
+
+```bash
+  CREATE DATABASE guiaperguntas;
+```
+Seta a tabela guiaperguntas
+
+```bash
+  USE guiaperguntas
+```
+Cria a tabela pergunta, junto as suas colunas
+
+```bash
+CREATE TABLE pergunta (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  descricao TEXT NOT NULL,
+  data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+  data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  perguntador VARCHAR(255) -- Adiciona a coluna 'perguntador' diretamente
+);
+```
+Cria a tabela resposta, junto as suas colunas
+
+```bash
+CREATE TABLE resposta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    texto TEXT NOT NULL,
+    likes INT DEFAULT 0,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    perguntaId INT,
+    nome_autor VARCHAR(255), -- Adiciona a coluna 'nome_autor' diretamente
+    FOREIGN KEY (perguntaId) REFERENCES pergunta(id) ON DELETE CASCADE
+);
+```
+
+Altera o Collate, para que não haje erro na busca.
+
+```bash
+  ALTER TABLE Pergunta MODIFY titulo VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+```
 
 ## Referência
 
