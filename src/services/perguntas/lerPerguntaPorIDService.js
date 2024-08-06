@@ -6,10 +6,9 @@ async function lerPerguntaPorIDService(perguntaId){
         include: [
             {
                 model: Resposta,
-                as: "resposta",
+                as: "respostas",
             },
         ],
-        order: [[{ model: Resposta, as: "resposta" }, "likes", "DESC"]],
         });
 }
 

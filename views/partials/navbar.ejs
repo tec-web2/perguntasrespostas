@@ -31,6 +31,15 @@
           Log-In
         </button>
       </a>
+      <button id="log-out" class="btn logIn" role="button"">
+        Log-Out
+      </button>
     </div>
   </div>
 </nav>
+<script>
+  document.getElementById("log-out").addEventListener("click", ()=>{
+    localStorage.clear();
+    window.location = "/login";
+  })
+</script>

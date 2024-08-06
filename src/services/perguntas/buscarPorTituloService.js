@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Pergunta, Resposta } = require("../../../database/associations");
+const { Pergunta, Resposta, Usuario } = require("../../../database/associations");
 
 async function buscarPorTituloService(titulo) {
   try {
@@ -15,6 +15,10 @@ async function buscarPorTituloService(titulo) {
           model: Resposta,
           as: "respostas",
         },
+        {
+          model: Usuario,
+          as: "autor",
+      }
       ],
     });
 

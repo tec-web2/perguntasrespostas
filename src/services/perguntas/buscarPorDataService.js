@@ -1,4 +1,4 @@
-const { Pergunta, Resposta } = require("../../../database/associations"); 
+const { Pergunta, Resposta, Usuario } = require("../../../database/associations"); 
 
 const { Op } = require("sequelize");
 const sequelize = require("sequelize");
@@ -11,6 +11,10 @@ async function buscarPorDataService(data){
                 model: Resposta,
                 as: "respostas",
             },
+            {
+                model: Usuario,
+                as: "autor",
+            }
         ],
     });
 }
