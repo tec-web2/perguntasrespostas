@@ -1,4 +1,4 @@
-const lerRespostaPorID = require("../../services/respostas/lerRespostaPorID");
+const lerRespostaPorID = require("../../services/respostas/lerRespostaPorIDService");
 const criarLikeRespostaService = require("../../services/respostas/criarLikeRespostaService")
 
 async function curtirRepostaController(req, res) {
