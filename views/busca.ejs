@@ -17,16 +17,16 @@
     <div class="container mt-4">
       
       <h3>Busca de Perguntas</h3>
-      <hr/>
+      <br>
       <div class="row">
         <!-- Busca por Data -->
         <div class="col-md-4">
           <form action="/buscarpergunta/data" method="POST">
             <div class="form-group">
-              <label class="mb-2" for="data_criacao">Buscar por Data:</label>
-              <input type="date" class="form-control input-color mb-2" id="data_criacao" name="data">
+              <label class="text-light-opacity mb-2" for="data_criacao">Buscar por Data:</label>
+              <input type="date" class="form-control input-color mb-3" id="data_criacao" name="data">
             </div>
-            <button type="submit" class="btn btn-primary btn btn-light">Buscar</button>
+            <button type="submit" class="btn btn-primary btn btn-light fw-semibold">Buscar</button>
           </form>
         </div>
 
@@ -34,10 +34,10 @@
         <div class="col-md-4">
           <form action="/buscarpergunta/titulo" method="POST">
             <div class="form-group">
-              <label class="mb-2" for="descricao">Buscar por titulo:</label>
-              <input type="text" class="form-control input-color mb-2" id="titulo" name="titulo" placeholder="Título">
+              <label class="text-light-opacity mb-2" for="descricao">Buscar por titulo:</label>
+              <input type="text" class="form-control input-color mb-3" id="titulo" name="titulo" placeholder="Título">
             </div>
-            <button type="submit" class="btn btn-primary btn btn-light">Buscar</button>
+            <button type="submit" class="btn btn-primary btn btn-light fw-semibold">Buscar</button>
           </form>
         </div>
 
@@ -45,10 +45,10 @@
         <div class="col-md-4">
           <form action="/buscarpergunta/perguntador" method="Post">
             <div class="form-group">
-              <label class="mb-2" for="perguntador">Buscar por Perguntador:</label>
-              <input type="text" class="form-control input-color mb-2" id="perguntador" name="perguntador" placeholder="Nome do perguntador">
+              <label class="text-light-opacity mb-2" for="perguntador">Buscar por Perguntador:</label>
+              <input type="text" class="form-control input-color mb-3" id="perguntador" name="perguntador" placeholder="Nome do perguntador">
             </div>
-            <button type="submit" class="btn btn-primary btn btn-light">Buscar</button>
+            <button type="submit" class="btn btn-primary btn btn-light fw-semibold">Buscar</button>
           </form>
         </div>
       </div>

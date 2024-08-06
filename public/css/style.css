@@ -14,30 +14,43 @@ body {
   background-color: var(--black);
   color: var(--white);
 }
-#formulario-pergunta {
+.bg-nav{
+  background-color: var(--light-black);
+}
+.navbar-brand {
+  color: var(--red);
+}
+.nav-item:hover {
+  opacity: 0.4;
+}
+.logIn{
+  background-color: var(--red);
+  color: var(--black);
+}
+.logIn:hover{
+  background-color: var(--red-opaque);
+}
+#toggleButton{
+  
+}
+#formulario-pergunta, .formulario-resposta{
   margin-top: 5vh;
   color: var(--white-opaque);
 }
-#formulario-pergunta button{
+#formulario-pergunta button, .formulario-resposta button{
   background-color: var(--white);
   color: var(--black) ;
 }
-#formulario-pergunta button:hover{
+#formulario-pergunta button:hover, .formulario-resposta button:hover{
   background-color: var(--white-opaque);
 }
-#formulario-pergunta input, #formulario-pergunta textarea{
+#formulario-pergunta input, #formulario-pergunta textarea, .formulario-resposta input, .formulario-resposta textarea{
   background-color: var(--light-black);
   border-color: rgba(255, 255, 255, 0.5);
   color: var(--white);
 }
 #formulario-pergunta input::placeholder, #formulario-pergunta textarea::placeholder{
   color: var(--white);
-}
-.bg-nav {
-  background-color: var(--light-black);
-}
-.navbar-brand {
-  color: var(--red);
 }
 .res-button a {
   background-color: var(--light-black);
@@ -59,14 +72,13 @@ body {
 hr {
   color: var(--off-white);
 }
+hr:last-child{
+  display: none;
+}
 .text-light-opacity {
   color: var(--gray);
   opacity: 0.5;
 }
-.nav-item:hover {
-  opacity: 0.4;
-}
-
 .transparent{
   background-color: transparent;
   border-color: transparent;
@@ -74,7 +86,7 @@ hr {
 }
 
 .input-color, .input-color:focus{
-  background-color: var(--text-white);
+  background-color: var(--light-black);
   color: var(--white);
   border-color: var(--gray);
 }
