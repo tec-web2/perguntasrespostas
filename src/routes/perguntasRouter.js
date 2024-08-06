@@ -6,6 +6,7 @@ const salvarPerguntaController = require("../controllers/perguntas/salvarPergunt
 const lerPorPerguntaIDController = require("../controllers/perguntas/lerPorPerguntaIDController");
 const deletarPerguntaController = require("../controllers/perguntas/deletarPerguntaController");
 const editarPerguntaController = require("../controllers/perguntas/editarPerguntaController");
+const ensureAuthenticate = require("../middlewares/ensureAuthenticate");
 
 
 perguntaRouter.get("/", (req, res) => {
@@ -16,7 +17,7 @@ perguntaRouter.get("/perguntar", (req, res) => {
   perguntarController(req, res);
 });
 
-perguntaRouter.post("/salvarpergunta", (req, res) => {
+perguntaRouter.post("/salvarpergunta", ensureAuthenticate, (req, res) => {
   salvarPerguntaController(req, res);
 });
 

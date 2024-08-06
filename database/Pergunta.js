@@ -11,15 +11,20 @@ Pergunta.init(
     },
     descricao: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
     data_criacao: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    perguntador: {
-      type: DataTypes.STRING,
+    id_autor: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "usuarios",
+        key: "id",
+      },
+      onDelete: "SET NULL",
     },
   },
   {

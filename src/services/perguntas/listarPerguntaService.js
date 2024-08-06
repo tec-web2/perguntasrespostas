@@ -1,21 +1,26 @@
-const { Pergunta, Resposta } = require("../../../database/associations"); 
+const { Pergunta, Resposta, Usuario } = require("../../../database/associations");
 
-async function listarPerguntaService(){
-    return Pergunta.findAll({order: [["id", "DESC"]],
+async function listarPerguntaService() {
+    return Pergunta.findAll({
+        order: [["id", "DESC"]],
         include: [
             {
                 model: Resposta,
-                as: "resposta",
+                as: "respostas",
             },
+            {
+                model: Usuario,
+                as: "autor",
+            }
         ]
     })
-        .then((perguntas) => {
-            return perguntas;
-        })
-        .catch((error) => {
-            console.error("Erro ao listar perguntas:", error);
-            throw error;
-        });
+    .then((perguntas) => {
+        return perguntas;
+    })
+    .catch((error) => {
+        console.error("Erro ao listar perguntas:", error);
+        throw error;
+    });
 }
 
 module.exports = listarPerguntaService;

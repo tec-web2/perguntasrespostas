@@ -1,15 +1,18 @@
-const { Pergunta, Resposta } = require("../../../database/associations"); 
+const { Pergunta, Resposta, Usuario} = require("../../../database/associations"); 
 
 async function buscarPorPerguntadorService(perguntador){
     return await Pergunta.findAll({
-        where: { perguntador: perguntador },
         include: [
             {
                 model: Resposta,
-                as: "resposta",
+                as: "respostas",
             },
+            {
+                model: Usuario,
+                as: "autor",
+                where: { nome: perguntador },
+            }
         ],
-        order: [[{ model: Resposta, as: "resposta" }, "likes", "DESC"]],
         });
 }
 

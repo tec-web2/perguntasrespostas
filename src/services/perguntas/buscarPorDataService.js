@@ -9,10 +9,9 @@ async function buscarPorDataService(data){
         include: [
             {
                 model: Resposta,
-                as: "resposta",
+                as: "respostas",
             },
         ],
-        order: [[{ model: Resposta, as: "resposta" }, "likes", "DESC"]],
     });
 }
 

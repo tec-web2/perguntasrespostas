@@ -27,9 +27,8 @@ CREATE TABLE pergunta (
     titulo VARCHAR(255) NOT NULL,
     descricao TEXT NOT NULL,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    nome_autor INT,
-    FOREIGN KEY (nome_autor) REFERENCES usuarios(id) ON DELETE SET NULL
+    id_autor INT,
+    FOREIGN KEY (id_autor) REFERENCES usuarios(id) ON DELETE SET NULL
 );
 
 
@@ -37,23 +36,22 @@ CREATE TABLE pergunta (
 CREATE TABLE resposta (
     id INT AUTO_INCREMENT PRIMARY KEY,
     texto TEXT NOT NULL,
-    likes INT DEFAULT 0,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     perguntaId INT,
-    nome_autor INT,
+    id_autor INT,
     FOREIGN KEY (perguntaId) REFERENCES pergunta(id) ON DELETE CASCADE,
-    FOREIGN KEY (nome_autor) REFERENCES usuarios(id) ON DELETE SET NULL
+    FOREIGN KEY (id_autor) REFERENCES usuarios(id) ON DELETE SET NULL
 );
 
 -- Criação da tabela 'resposta_likes' para controlar os likes nas respostas
 CREATE TABLE resposta_likes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     respostaId INT NOT NULL,
-    usuarioId INT NOT NULL,
+    id_autor INT NOT NULL,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (respostaId) REFERENCES resposta(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuarioId) REFERENCES usuarios(id) ON DELETE CASCADE,
-    UNIQUE KEY (respostaId, usuarioId)
+    FOREIGN KEY (id_autor) REFERENCES usuarios(id) ON DELETE CASCADE,
+    UNIQUE KEY (respostaId, id_autor)
 );
 
 -- Ajuste do collation para a tabela 'pergunta'

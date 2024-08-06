@@ -15,7 +15,6 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
       <div class="card p-5 bg-dark text-light col-12 col-md-6 col-lg-4">
         <h3 class="mb-4 text-center">Login</h3>
-        <form action="/login" method="POST">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" required />
@@ -24,8 +23,7 @@
             <label for="password" class="form-label">Senha</label>
             <input type="password" class="form-control" id="password" name="password" required />
           </div>
-          <button type="submit" class="btn btn-primary w-100">Entrar</button>
-        </form>
+          <button id="loginButton" class="btn btn-primary w-100">Entrar</button>
         <div class="text-center mt-3">
           <small class="text-light-opacity">Ainda não tem conta? <a href="/cadastro" class="text-decoration-none text-info">Cadastre-se</a></small>
         </div>
@@ -33,5 +31,28 @@
     </div>
 
     <%- include('partials/footer.ejs') %>
+    <script>
+      document.getElementById('loginButton').addEventListener('click', async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+  
+        const response = await fetch('/authenticate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+  
+        if (response.ok) {
+          const result = await response.text();
+          localStorage.setItem('token', result);
+          window.location.href = "/";
+        } else {
+          // Tratar erro aqui
+          alert("Email ou senha incorretos")
+        }
+      });
+    </script>
   </body>
 </html>

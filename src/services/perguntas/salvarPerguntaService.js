@@ -1,10 +1,10 @@
 const { Pergunta, Resposta } = require("../../../database/associations");
 
-async function salvarPerguntaService(titulo, descricao, perguntador) {
+async function salvarPerguntaService(titulo, descricao, id_autor) {
   return Pergunta.create({
     titulo: titulo,
     descricao: descricao,
-    perguntador: perguntador,
+    id_autor,
   })
     .then(() => {
       return;

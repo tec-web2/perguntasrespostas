@@ -13,10 +13,9 @@ async function buscarPorTituloService(titulo) {
       include: [
         {
           model: Resposta,
-          as: "resposta",
+          as: "respostas",
         },
       ],
-      order: [[{ model: Resposta, as: "resposta" }, "likes", "DESC"]],
     });
 
     return perguntas;

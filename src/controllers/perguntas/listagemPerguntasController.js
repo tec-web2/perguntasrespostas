@@ -2,6 +2,7 @@ const listarPerguntaService = require("../../services/perguntas/listarPerguntaSe
 
 async function listarPerguntaController(req, res) {
   const perguntas = await listarPerguntaService();
+  console.log(perguntas)
   res.render("index", {
     pergunta: perguntas,
   });
