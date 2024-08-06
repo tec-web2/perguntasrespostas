@@ -15,17 +15,17 @@
     <%- include('partials/navbar.ejs') %>
 
     <div class="container">
-      <hr />
-      <h1>Resultado da Perguntas</h1>
+      
+      <h2 class="mt-4">Resultado da Perguntas</h1>
       <hr />
       <% pergunta.forEach(pergunta => { %>
       <br />
-      <div class="card">
+      <div class="card answer">
         <div class="card-body">
           <h3><%= pergunta.titulo %></h3>
         </div>
         <div class="card-footer">
-          <a href="/pergunta/<%= pergunta.id %>" class="btn btn-primary"
+          <a href="/pergunta/<%= pergunta.id %>" class="btn btn-light"
             >Responder</a
           >
         </div>
