@@ -32,22 +32,24 @@
             <h3>
               <%= pergunta.titulo %>
             </h3>
-            <p>
+            <small class="text-light-opacity">
               <%= pergunta.descricao %>
-            </p>
+            </small>
           </div>
         </div>
-        <div class="card-footer">
-          <small class="transparent">
+        <div class="card-footer d-flex align-items-center gap-4">
+          <small class="text-light-opacity">
             Feita por <%= pergunta.perguntador %> em <%= new Date(pergunta.data_criacao).toLocaleDateString('pt-BR', {
                 year: 'numeric' , month: 'long' , day: 'numeric' }) %>
           </small>
-          <button class="btn btn-danger btn-sm" onclick="apagarPergunta('<%= pergunta.id %>')">
-            Apagar Pergunta
-          </button>
-          <button class="btn btn-secondary btn-sm" onclick="editarPergunta('<%= pergunta.id %>')">
-            Editar Pergunta
-          </button>
+          <div class="buttons">
+            <button class="btn btn-danger btn-sm" onclick="apagarPergunta('<%= pergunta.id %>')">
+              Apagar Pergunta
+            </button>
+            <button class="btn btn-secondary btn-sm ms-2" onclick="editarPergunta('<%= pergunta.id %>')">
+              Editar Pergunta
+            </button>
+          </div>
         </div>
       </div>
 
@@ -67,15 +69,15 @@
                     <%= resposta.likes %>
                   </span>)
                 </button>
-                <button class="btn btn-danger btn-sm" onclick="apagarResposta('<%= resposta.id %>')">
+                <button class="btn btn-danger btn-sm ms-2" onclick="apagarResposta('<%= resposta.id %>')">
                   Deletar Resposta
                 </button>
-                <button class="btn btn-secondary btn-sm"
+                <button class="btn btn-secondary btn-sm ms-2"
                   onclick="editarResposta('<%= resposta.id %>', '<%= resposta.texto %>')">
                   Editar Resposta
                 </button>
               </div>
-              <small class="transparent">
+              <small class="text-light-opacity">
                 Respondida em: <%= new Date(resposta.data_criacao).toLocaleDateString() %>
               </small>
             </li>
@@ -85,14 +87,14 @@
                 <% } %>
       </ul>
 
-      <h4>Adicionar Resposta:</h4>
-      <form action="/pergunta/<%= pergunta.id %>/resposta" method="POST">
+      <form class="formulario-resposta" action="/pergunta/<%= pergunta.id %>/resposta" method="POST">
+        <h4>Adicionar Resposta:</h4>
         <div class="form-group mb-3">
           <label>Resposta</label>
           <textarea name="texto" class="form-control input-color mt-2" rows="3"
             placeholder="Digite sua resposta aqui..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Enviar Resposta</button>
+        <button type="submit" class="btn fw-semibold">Enviar Resposta</button>
       </form>
     </div>
 
