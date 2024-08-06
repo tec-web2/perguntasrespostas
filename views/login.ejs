@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/images/search.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+      <div class="card p-5 bg-dark text-light col-12 col-md-6 col-lg-4">
+        <h3 class="mb-4 text-center">Login</h3>
+        <form action="/login" method="POST">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" required />
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        </form>
+        <div class="text-center mt-3">
+          <small class="text-light-opacity">Ainda não tem conta? <a href="/cadastro" class="text-decoration-none text-info">Cadastre-se</a></small>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+  </body>
+</html>
