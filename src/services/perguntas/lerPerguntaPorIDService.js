@@ -1,4 +1,4 @@
-const { Pergunta, Resposta } = require("../../../database/associations"); 
+const { Pergunta, Resposta, Usuario } = require("../../../database/associations"); 
 
 async function lerPerguntaPorIDService(perguntaId){
     return await Pergunta.findOne({
@@ -8,6 +8,10 @@ async function lerPerguntaPorIDService(perguntaId){
                 model: Resposta,
                 as: "respostas",
             },
+            {
+                model: Usuario,
+                as: "autor",
+            }
         ],
         });
 }

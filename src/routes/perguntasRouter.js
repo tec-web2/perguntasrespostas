@@ -25,11 +25,11 @@ perguntaRouter.get("/pergunta/:id", (req, res) => {
   lerPorPerguntaIDController(req, res);
 });
 
-perguntaRouter.delete("/pergunta/delete/:id", (req, res) => {
+perguntaRouter.delete("/pergunta/delete/:id", ensureAuthenticate, (req, res) => {
   deletarPerguntaController(req, res);
 });
 
-perguntaRouter.put("/pergunta/:id/update", (req, res) => {
+perguntaRouter.put("/pergunta/:id/update", ensureAuthenticate, (req, res) => {
   editarPerguntaController(req, res);
 });
 

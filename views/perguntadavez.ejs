@@ -39,7 +39,7 @@
         </div>
         <div class="card-footer d-flex align-items-center gap-4">
           <small class="text-light-opacity">
-            Feita por <%= pergunta.perguntador %> em <%= new Date(pergunta.data_criacao).toLocaleDateString('pt-BR', {
+            Feita por <%= pergunta.autor.nome %> em <%= new Date(pergunta.data_criacao).toLocaleDateString('pt-BR', {
                 year: 'numeric' , month: 'long' , day: 'numeric' }) %>
           </small>
           <div class="buttons">
@@ -129,6 +129,7 @@
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
+              'Authorization': "Bearer " + localStorage.getItem('token')
             },
           })
             .then((response) => {
@@ -136,12 +137,12 @@
                 alert("Pergunta apagada com sucesso.");
                 window.location.href = "/"; // Redireciona após apagar
               } else {
-                alert("Erro ao apagar a pergunta.");
+                alert("Erro!! Só quem pode apagar a pergunta é quem fez a pergunta!!");
               }
             })
             .catch((error) => {
               console.error("Erro:", error);
-              alert("Erro ao apagar a pergunta.");
+              alert("Erro!! Só quem pode apagar a pergunta é quem fez a pergunta!!");
             });
         }
       }
@@ -196,13 +197,14 @@
       }
       function editarPergunta(perguntaId) {
         const perguntaTitulo = prompt("Edite o título da pergunta:", "<%= pergunta.titulo %>");
-        const perguntaDescricao = prompt("Edite a descrição da pergunta:", "<%= pergunta.descricao %>");
+        const perguntaDescricao = prompt("Edite a descrição da pergunta:", `<%= pergunta.descricao %>`);
 
         if (perguntaTitulo && perguntaDescricao) {
           fetch(`/pergunta/${perguntaId}/update`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
+              'Authorization': "Bearer " + localStorage.getItem('token')
             },
             body: JSON.stringify({
               titulo: perguntaTitulo,
@@ -214,12 +216,12 @@
                 alert("Pergunta editada com sucesso.");
                 location.reload(); // Recarrega a página após a edição
               } else {
-                alert("Erro ao editar a pergunta.");
+                alert("Erro!! Só quem pode editar a pergunta é quem fez a pergunta!!");
               }
             })
             .catch((error) => {
               console.error("Erro:", error);
-              alert("Erro ao editar a pergunta.");
+              alert("Erro!! Só quem pode editar a pergunta é quem fez a pergunta!!");
             });
         }
       }
