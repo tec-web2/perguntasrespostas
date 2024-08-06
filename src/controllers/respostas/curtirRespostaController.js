@@ -1,14 +1,18 @@
 const lerRespostaPorID = require("../../services/respostas/lerRespostaPorID");
+const criarLikeRespostaService = require("../../services/respostas/criarLikeRespostaService")
 
 async function curtirRepostaController(req, res) {
     const respostaId = req.params.id;
+    const user_id = req.user_id
     try {
         const resposta = await lerRespostaPorID(respostaId);
 
         if (resposta) {
-            resposta.likes += 1;
-            await resposta.save();
-            res.json({ success: true, likes: resposta.likes });
+            const like = await criarLikeRespostaService(respostaId, user_id);
+            if (!like){
+                return res.status(400).send("Like duplicado")
+            }
+            res.status(200).send("Resposta criada com sucesso")
         } else {
             res.status(404).json({ success: false, message: "Resposta não encontrada" });
         }

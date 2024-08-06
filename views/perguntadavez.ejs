@@ -66,7 +66,7 @@
               <div>
                 <button class="btn btn-primary btn-sm" onclick="likeResposta('<%= resposta.id %>')">
                   Curtir (<span id="likes-<%= resposta.id %>">
-                    <%= resposta.likes %>
+                    <%= resposta.likes.length %>
                   </span>)
                 </button>
                 <button class="btn btn-danger btn-sm ms-2" onclick="apagarResposta('<%= resposta.id %>')">
@@ -125,23 +125,19 @@
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': "Bearer " + localStorage.getItem('token')
           },
         })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              const likesElement = document.getElementById(
-                `likes-${respostaId}`
-              );
-              likesElement.textContent = data.likes;
+          .then((response) => {
+            if (response.ok){
               location.reload();
-            } else {
-              alert("Erro ao curtir a resposta.");
+            }
+            else{
+              alert("Logue para curtir ou curta só uma vez");
             }
           })
           .catch((error) => {
-            console.error("Erro:", error);
-            alert("Erro ao curtir a resposta.");
+            alert("Logue para curtir ou curta só uma vez");
           });
       }
       function apagarPergunta(perguntaId) {
