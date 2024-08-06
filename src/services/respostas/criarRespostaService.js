@@ -1,10 +1,10 @@
 const { Pergunta, Resposta } = require("../../../database/associations"); 
 
-async function criarRespostaService(texto, nome_autor, perguntaID){
+async function criarRespostaService(texto, id_autor, perguntaID){
     return await Resposta.create({
         texto,
         perguntaId: perguntaID, 
-        nome_autor: nome_autor,
+        id_autor,
         data_criacao: new Date(), // Ou utilize o campo padrão de criação no banco
     }).then((resposta) => {
         return resposta;

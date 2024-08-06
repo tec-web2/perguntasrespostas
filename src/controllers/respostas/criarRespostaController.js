@@ -3,13 +3,14 @@ const criarRespostaService = require("../../services/respostas/criarRespostaServ
 
 async function criarRepostaController(req, res) {
     const perguntaID = req.params.id;
-    const { texto, nome} = req.body;
+    const { texto } = req.body;
+    const user_id = req.user_id
 
     const pergunta = lerPerguntaPorIDService(perguntaID);
     if (!pergunta) {
         return res.status(404).send("Pergunta não encontrada.");
     }
-    const novaResposta = criarRespostaService(texto, nome, perguntaID)
+    const novaResposta = criarRespostaService(texto, user_id, perguntaID)
 
     res.redirect(`/pergunta/${perguntaID}`);
 }

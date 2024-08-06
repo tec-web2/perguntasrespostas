@@ -7,6 +7,12 @@ async function lerPerguntaPorIDService(perguntaId){
             {
                 model: Resposta,
                 as: "respostas",
+                include: [
+                    {
+                        model: Usuario,
+                        as: "autor", // Inclui o autor da resposta
+                    }
+                ]
             },
             {
                 model: Usuario,

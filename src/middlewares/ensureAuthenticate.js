@@ -3,7 +3,6 @@ const { verify } = require("jsonwebtoken");
 
 
 function ensureAuthenticate(request, response, next){
-    console.log("teste")
     const authHeader = request.headers.authorization;
     if(!authHeader){
         return response.status(400).render("login");

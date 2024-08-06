@@ -55,11 +55,11 @@
 
       <h4>Respostas:</h4>
       <ul class="list-group mb-4">
-        <% if (pergunta.resposta && pergunta.resposta.length> 0) { %> <% pergunta.resposta.forEach(function(resposta) {
+        <% if (pergunta.respostas && pergunta.respostas.length> 0) { %> <% pergunta.respostas.forEach(function(resposta) {
             %>
             <li class="list-group-item answer mt-3">
               <p><strong>
-                  <%= resposta.nome_autor %>:
+                  <%= resposta.autor.nome %>:
                 </strong>
                 <%= resposta.texto %>
               </p>
@@ -87,18 +87,39 @@
                 <% } %>
       </ul>
 
-      <form class="formulario-resposta" action="/pergunta/<%= pergunta.id %>/resposta" method="POST">
         <h4>Adicionar Resposta:</h4>
         <div class="form-group mb-3">
           <label>Resposta</label>
-          <textarea name="texto" class="form-control input-color mt-2" rows="3"
+          <textarea id="titulo-form" name="texto" class="form-control input-color mt-2" rows="3"
             placeholder="Digite sua resposta aqui..." required></textarea>
         </div>
-        <button type="submit" class="btn fw-semibold">Enviar Resposta</button>
-      </form>
+        <button id="enviar-resposta" type="submit" class="btn btn-primary fw-semibold">Enviar Resposta</button>
     </div>
 
     <script>
+      document.getElementById("enviar-resposta").addEventListener("click", async()=>{
+        const texto = document.getElementById('titulo-form').value;
+        fetch('/pergunta/'+'<%= pergunta.id %>'+'/resposta', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': "Bearer " + localStorage.getItem('token')
+          },
+          body: JSON.stringify({ texto })
+        })
+          .then((response) => {
+            if (response.ok) {
+              location.reload();
+            } else {
+              alert("Erro!! Faça login");
+              window.location = "/login"
+            }
+          })
+          .catch((error) => {
+            console.error("Erro:", error);
+            alert("Erro!! Só quem pode apagar a pergunta é quem fez a pergunta!!");
+          });
+      })
       function likeResposta(respostaId) {
         fetch(`/resposta/${respostaId}/like`, {
           method: "POST",
