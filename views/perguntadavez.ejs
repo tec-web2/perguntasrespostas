@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PERGUNTAS-RESPOSTAS</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="icon" href="/images/search.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <%- include('partials/navbar.ejs') %>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PERGUNTAS-RESPOSTAS</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/images/search.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <%- include('partials/navbar.ejs') %>
     <div class="container">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h3><%= pergunta.titulo %></h3>
-          <p><%= pergunta.descricao %></p>
+      <div class="card mb-4 transparent">
+        <div class="mt-3 d-flex">
+          <div class="mt-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+              class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3>
+              <%= pergunta.titulo %>
+            </h3>
+            <p>
+              <%= pergunta.descricao %>
+            </p>
+          </div>
         </div>
         <div class="card-footer">
-          <small class="text-muted">
-            Feita por <%= pergunta.perguntador %> em <%= new
-            Date(pergunta.data_criacao).toLocaleDateString('pt-BR', { year:
-            'numeric', month: 'long', day: 'numeric' }) %>
+          <small class="transparent">
+            Feita por <%= pergunta.perguntador %> em <%= new Date(pergunta.data_criacao).toLocaleDateString('pt-BR', {
+                year: 'numeric' , month: 'long' , day: 'numeric' }) %>
           </small>
-          <button
-            class="btn btn-danger btn-sm"
-            onclick="apagarPergunta('<%= pergunta.id %>')"
-          >
+          <button class="btn btn-danger btn-sm" onclick="apagarPergunta('<%= pergunta.id %>')">
             Apagar Pergunta
           </button>
           <button class="btn btn-secondary btn-sm" onclick="editarPergunta('<%= pergunta.id %>')">
@@ -39,58 +53,46 @@
 
       <h4>Respostas:</h4>
       <ul class="list-group mb-4">
-        <% if (pergunta.resposta && pergunta.resposta.length > 0) { %> <%
-        pergunta.resposta.forEach(function(resposta) { %>
-        <li class="list-group-item">
-          <p><strong><%= resposta.nome_autor %>:</strong> <%= resposta.texto %></p>
-          <div>
-            <button
-              class="btn btn-primary btn-sm"
-              onclick="likeResposta('<%= resposta.id %>')"
-            >
-              Curtir (<span id="likes-<%= resposta.id %>"
-                ><%= resposta.likes %></span
-              >)
-            </button>
-            <button
-              class="btn btn-danger btn-sm"
-              onclick="apagarResposta('<%= resposta.id %>')"
-            >
-              Deletar Resposta
-            </button>
-            <button class="btn btn-secondary btn-sm" onclick="editarResposta('<%= resposta.id %>', '<%= resposta.texto %>')">
-              Editar Resposta
-            </button>
-          </div>
-          <small class="text-muted">
-            Respondida em: <%= new
-            Date(resposta.data_criacao).toLocaleDateString() %>
-          </small>
-        </li>
-        <% }); %> <% } else { %>
-        <li class="list-group-item">Nenhuma resposta ainda.</li>
-        <% } %>
+        <% if (pergunta.resposta && pergunta.resposta.length> 0) { %> <% pergunta.resposta.forEach(function(resposta) {
+            %>
+            <li class="list-group-item answer mt-3">
+              <p><strong>
+                  <%= resposta.nome_autor %>:
+                </strong>
+                <%= resposta.texto %>
+              </p>
+              <div>
+                <button class="btn btn-primary btn-sm" onclick="likeResposta('<%= resposta.id %>')">
+                  Curtir (<span id="likes-<%= resposta.id %>">
+                    <%= resposta.likes %>
+                  </span>)
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="apagarResposta('<%= resposta.id %>')">
+                  Deletar Resposta
+                </button>
+                <button class="btn btn-secondary btn-sm"
+                  onclick="editarResposta('<%= resposta.id %>', '<%= resposta.texto %>')">
+                  Editar Resposta
+                </button>
+              </div>
+              <small class="transparent">
+                Respondida em: <%= new Date(resposta.data_criacao).toLocaleDateString() %>
+              </small>
+            </li>
+            <% }); %>
+              <% } else { %>
+                <li class="list-group-item input-color">Nenhuma resposta ainda.</li>
+                <% } %>
       </ul>
 
       <h4>Adicionar Resposta:</h4>
       <form action="/pergunta/<%= pergunta.id %>/resposta" method="POST">
         <div class="form-group mb-3">
           <label>Autor</label>
-          <input
-            type="text"
-            placeholder="Nome"
-            class="form-control"
-            name="nome"
-            required
-          />
+          <input type="text" placeholder="Nome" class="form-control input-color mb-2 mt-2" name="nome" required />
           <label>Resposta</label>
-          <textarea
-            name="texto"
-            class="form-control"
-            rows="3"
-            placeholder="Digite sua resposta aqui..."
-            required
-          ></textarea>
+          <textarea name="texto" class="form-control input-color mt-2" rows="3"
+            placeholder="Digite sua resposta aqui..." required></textarea>
         </div>
         <button type="submit" class="btn btn-success">Enviar Resposta</button>
       </form>
@@ -167,7 +169,7 @@
       }
       function editarResposta(respostaId, textoAtual) {
         const novoTexto = prompt("Edite a resposta:", textoAtual);
-      
+
         if (novoTexto) {
           fetch(`/resposta/${respostaId}/update`, {
             method: "PUT",
@@ -195,7 +197,7 @@
       function editarPergunta(perguntaId) {
         const perguntaTitulo = prompt("Edite o título da pergunta:", "<%= pergunta.titulo %>");
         const perguntaDescricao = prompt("Edite a descrição da pergunta:", "<%= pergunta.descricao %>");
-      
+
         if (perguntaTitulo && perguntaDescricao) {
           fetch(`/pergunta/${perguntaId}/update`, {
             method: "PUT",
@@ -224,5 +226,6 @@
     </script>
 
     <%- include('partials/footer.ejs') %>
-  </body>
+</body>
+
 </html>
