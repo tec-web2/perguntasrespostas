@@ -43,11 +43,15 @@
                 year: 'numeric' , month: 'long' , day: 'numeric' }) %>
           </small>
           <div class="buttons">
-            <button class="btn btn-danger btn-sm" onclick="apagarPergunta('<%= pergunta.id %>')">
-              Apagar Pergunta
+            <button class="border border-0 rounded-circle" onclick="apagarPergunta('<%= pergunta.id %>')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+              </svg>
             </button>
-            <button class="btn btn-secondary btn-sm ms-2" onclick="editarPergunta('<%= pergunta.id %>')">
-              Editar Pergunta
+            <button class="border border-0 rounded-circle ms-2" onclick="editarPergunta('<%= pergunta.id %>')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+              </svg>
             </button>
           </div>
         </div>
@@ -63,18 +67,22 @@
                 </strong>
                 <%= resposta.texto %>
               </p>
-              <div>
+              <div class="buttons mb-2">
                 <button class="btn btn-primary btn-sm" onclick="likeResposta('<%= resposta.id %>')">
                   Curtir (<span id="likes-<%= resposta.id %>">
                     <%= resposta.likes.length %>
                   </span>)
                 </button>
-                <button class="btn btn-danger btn-sm ms-2" onclick="apagarResposta('<%= resposta.id %>')">
-                  Deletar Resposta
+                <button class="border border-0 rounded-circle ms-2" onclick="apagarResposta('<%= resposta.id %>')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                  </svg>
                 </button>
-                <button class="btn btn-secondary btn-sm ms-2"
+                <button class="border border-0 rounded-circle ms-2"
                   onclick="editarResposta('<%= resposta.id %>', '<%= resposta.texto %>')">
-                  Editar Resposta
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                  </svg>
                 </button>
               </div>
               <small class="text-light-opacity">
@@ -93,7 +101,7 @@
           <textarea id="titulo-form" name="texto" class="form-control input-color mt-2" rows="3"
             placeholder="Digite sua resposta aqui..." required></textarea>
         </div>
-        <button id="enviar-resposta" type="submit" class="btn btn-primary fw-semibold">Enviar Resposta</button>
+        <button id="enviar-resposta" type="submit" class="btn  btn-light fw-semibold">Enviar Resposta</button>
     </div>
 
     <script>

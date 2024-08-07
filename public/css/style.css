@@ -8,7 +8,10 @@
   --white: #f1f8fb;
   --white-opaque: rgba(241,248,251,0.5);
 }
-
+.light{
+  --white: #060608;
+  --black: #f1f8fb;
+}
 body {
   font-family: "Inter", serif;
   background-color: var(--black);
@@ -30,8 +33,15 @@ body {
 .logIn:hover{
   background-color: var(--red-opaque);
 }
-#toggleButton{
-  
+#switch button{
+  background-color: var(--white-opaque);
+  color: var(--text-white);
+  width: 2rem;
+  height: 2rem;
+}
+#switch button:hover{
+  outline: 0.15rem solid var(--white);
+  opacity: 0.2;
 }
 #formulario-pergunta, .formulario-resposta{
   margin-top: 5vh;
@@ -78,6 +88,13 @@ hr:last-child{
 .text-light-opacity {
   color: var(--gray);
   opacity: 0.5;
+}
+.buttons button{
+  background-color: transparent;
+  color: var(--white);
+}
+.buttons button:hover{
+  color: var(--white-opaque);
 }
 .transparent{
   background-color: transparent;
