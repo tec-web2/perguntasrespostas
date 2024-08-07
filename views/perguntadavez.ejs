@@ -68,8 +68,9 @@
                 <%= resposta.texto %>
               </p>
               <div class="buttons mb-2">
-                <button class="btn btn-primary btn-sm" onclick="likeResposta('<%= resposta.id %>')">
-                  Curtir (<span id="likes-<%= resposta.id %>">
+                <button class="like-button border border-0" onclick="likeResposta('<%= resposta.id %>')">
+                  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path></svg>
+                  (<span id="likes-<%= resposta.id %>">
                     <%= resposta.likes.length %>
                   </span>)
                 </button>
