@@ -49,7 +49,10 @@
     document.getElementById("perguntar").addEventListener("click", async () => {
       const titulo = document.getElementById("titulo-form").value;
       const descricao = document.getElementById("descricao").value;
-
+      if (!titulo.trim()) {
+        alert("O campo título é obrigatório.");
+        return;
+      }
       const response = await fetch("/salvarpergunta", {
         method: "POST",
         headers: {
@@ -68,5 +71,5 @@
       }
     });
   </script>
-  <%- include('partials/footer.ejs') %> 
+  <%- include('partials/footer.ejs') %>
 </html>
