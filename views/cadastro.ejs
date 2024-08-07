@@ -6,32 +6,62 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="icon" href="/images/search.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/search.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <%- include('partials/navbar.ejs') %>
 
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div
+      class="container d-flex justify-content-center align-items-center min-vh-100"
+    >
       <div class="card p-5 bg-dark text-light col-12 col-md-6 col-lg-4">
         <h3 class="mb-4 text-center">Cadastro</h3>
         <form action="/usuario/create" method="POST">
           <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" name="nome" required />
+            <input
+              type="text"
+              class="form-control"
+              id="nome"
+              name="nome"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required />
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password" name="password" required />
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+              required
+            />
           </div>
           <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
         </form>
         <div class="text-center mt-3">
-          <small class="text-light-opacity">Já tem uma conta? <a href="/login" class="text-decoration-none text-info">Faça login</a></small>
+          <small class="text-light-opacity"
+            >Já tem uma conta?
+            <a href="/login" class="text-decoration-none text-info"
+              >Faça login</a
+            ></small
+          >
         </div>
       </div>
     </div>

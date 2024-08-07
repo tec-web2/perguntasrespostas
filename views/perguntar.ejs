@@ -1,65 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br" class="dark-theme">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PERGUNTAS-RESPOSTAS</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/images/search.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PERGUNTAS-RESPOSTAS</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="icon" href="/images/search.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet">
-</head>
-
-<body>
-  <%- include('partials/navbar.ejs') %>
+  <body>
+    <%- include('partials/navbar.ejs') %>
     <div class="container">
       <div class="question" id="formulario-pergunta">
         <div class="header">
           <h3>Adicione Uma Pergunta</h3>
         </div>
         <div class="body">
-            <label class="mb-2">Título</label>
-            <input id="titulo-form" type="text" placeholder="Título" class="form-control py-2" name="titulo" />
-            <br />
-            <label>Descrição</label>
-            <textarea id="descricao" placeholder="Descreva sua pergunta aqui" class="form-control py-2" name="descricao"></textarea>
-            <button id="perguntar" class="btn mt-3 fw-semibold">Perguntar</button>
+          <label class="mb-2">Título</label>
+          <input
+            id="titulo-form"
+            type="text"
+            placeholder="Título"
+            class="form-control py-2"
+            name="titulo"
+            required
+          />
+          <br />
+          <label>Descrição</label>
+          <textarea
+            id="descricao"
+            placeholder="Descreva sua pergunta aqui"
+            class="form-control py-2"
+            name="descricao"
+          ></textarea>
+          <button id="perguntar" class="btn mt-3 fw-semibold">Perguntar</button>
         </div>
       </div>
     </div>
   </body>
   <script>
-    document.getElementById("perguntar").addEventListener('click', async () => {
-      const titulo = document.getElementById('titulo-form').value;
-      const descricao = document.getElementById('descricao').value;
+    document.getElementById("perguntar").addEventListener("click", async () => {
+      const titulo = document.getElementById("titulo-form").value;
+      const descricao = document.getElementById("descricao").value;
 
-      const response = await fetch('/salvarpergunta', {
-        method: 'POST',
+      const response = await fetch("/salvarpergunta", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': "Bearer "+localStorage.getItem('token')
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        body: JSON.stringify({ titulo, descricao })
+        body: JSON.stringify({ titulo, descricao }),
       });
 
       if (response.ok) {
         window.location.href = "/";
       } else {
         // Tratar erro aqui
-        alert("É necessário login")
+        alert("É necessário login");
         window.location.href = "/login";
       }
     });
   </script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-  integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-<script src="/js/bootstrap.min.js"></script>
-
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/js/bootstrap.min.js"></script>
 </html>
