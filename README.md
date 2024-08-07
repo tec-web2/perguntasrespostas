@@ -8,9 +8,11 @@ O projeto se trata de uma plataforma de perguntas e respostas utilizando o banco
 ### Banco de Dados
 
 - Utilizamos o MySQL para armazenar as perguntas e respostas dos usuários.
-- Duas tabelas principais foram criadas: perguntas e respostas.
-- A tabela `perguntas` armazena o título, descrição, data de criação e o nome do usuário que fez a pergunta.
-- A tabela `respostas` armazena o texto da resposta, o número de likes, quem respondeu, a data de criação, e está associada à pergunta correspondente por meio de uma chave estrangeira.
+- Quatro tabelas foram criadas: perguntas, respostas, usuarios e resposta_likes. Onde todas as tabelas tem certa dependência, por meio de chave estrangeira, a tabela usuarios.
+- A tabela `perguntas` armazena o título, descrição e a data de criação .
+- A tabela `respostas` armazena o texto da resposta, a data de criação, e está associada à pergunta correspondente por meio de uma chave estrangeira.
+- A tabela `usuarios` armazena os atributos do usuário, como nome e email.
+- A tabela `resposta_likes` armazena os atributos necessários para se trabalhar com a questão dos likes.
 
 ### Back-End
 
@@ -86,16 +88,28 @@ Seta a tabela guiaperguntas
 ```bash
   USE guiaperguntas
 ```
+Cria a tabela usuarios, junto as suas colunas
+
+```bash
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    senha_hash VARCHAR(255) NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
+
 Cria a tabela pergunta, junto as suas colunas
 
 ```bash
 CREATE TABLE pergunta (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  titulo VARCHAR(255) NOT NULL,
-  descricao TEXT NOT NULL,
-  data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-  data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  perguntador VARCHAR(255) -- Adiciona a coluna 'perguntador' diretamente
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descricao TEXT NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id_autor INT,
+    FOREIGN KEY (id_autor) REFERENCES usuarios(id) ON DELETE SET NULL
 );
 ```
 Cria a tabela resposta, junto as suas colunas
@@ -104,11 +118,25 @@ Cria a tabela resposta, junto as suas colunas
 CREATE TABLE resposta (
     id INT AUTO_INCREMENT PRIMARY KEY,
     texto TEXT NOT NULL,
-    likes INT DEFAULT 0,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     perguntaId INT,
-    nome_autor VARCHAR(255), -- Adiciona a coluna 'nome_autor' diretamente
-    FOREIGN KEY (perguntaId) REFERENCES pergunta(id) ON DELETE CASCADE
+    id_autor INT,
+    FOREIGN KEY (perguntaId) REFERENCES pergunta(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_autor) REFERENCES usuarios(id) ON DELETE SET NULL
+);
+```
+
+Cria a tabela resposta_likes, junto as suas colunas e dependências
+
+```bash
+CREATE TABLE resposta_likes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    respostaId INT NOT NULL,
+    id_autor INT NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (respostaId) REFERENCES resposta(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_autor) REFERENCES usuarios(id) ON DELETE CASCADE,
+    UNIQUE KEY (respostaId, id_autor)
 );
 ```
 
