@@ -1,7 +1,7 @@
 
-# Plataforma de Perguntas e Respostas
+# Questione - Plataforma de Perguntas e Respostas
 
-O projeto se trata de uma plataforma de perguntas e respostas utilizando o banco de dados MySQL e frameworks modernos para o desenvolvimento back-end e front-end. A plataforma permite que os usuários façam perguntas, respondam a elas, e interajam por meio de curtidas nas respostas, com foco na qualidade e na inovação.
+O projeto se trata de uma plataforma de perguntas e respostas, chamada de Questione, utilizando o banco de dados MySQL e frameworks modernos para o desenvolvimento back-end e front-end. A plataforma permite que os usuários façam perguntas, respondam a elas, e interajam por meio de curtidas nas respostas, com foco na qualidade e na inovação.
 
 ## Componentes do Projeto
 
